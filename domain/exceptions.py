@@ -2,7 +2,7 @@ class AppError(Exception):
     pass
 
 
-class DataLoadError(AppError):
+class DataLoaderError(AppError):
     pass
 
 
