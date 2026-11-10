@@ -2,6 +2,7 @@ import csv
 import logging
 from datetime import datetime
 from typing import Generator, Dict, Any
+feature/Correccion-de-transacciones
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -20,13 +21,17 @@ class CsvDataLoader:
             with open(self._file_path, mode="r", encoding="utf-8") as file:
                 reader = csv.DictReader(file)
                 for row_number, row in enumerate(reader, start=2):
-                    try:
-                        row["amount"] = float(row["amount"])
-                        row["timestamp"] = datetime.fromisoformat(row["timestamp"])
-                        row["is_fraud"] = str(row["is_fraud"]).strip().lower() in ("true", "1")
-                        yield row
-                    except (ValueError, KeyError) as e:
-                        logger.warning("Error de formato en la fila %d: %s", row_number, e)
-        except FileNotFoundError as e:
-            logger.error("No se encontró el archivo en la ruta: %s", self._file_path)
-            raise
+=======
+
+from domain.exceptions import DataLoaderError
+
+logger = logging.getLogger(__name__)
+
+
+class CsvDataLoader:
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def read(self) -> Generator[Dict[str, Any], None, None]:
+        try:
+ 

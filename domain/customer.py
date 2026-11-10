@@ -1,5 +1,5 @@
 class Customer:
- 
+
     def __init__(
         self,
         customer_id: str,
@@ -15,11 +15,10 @@ class Customer:
         self.customer_gender = customer_gender
         self.province = province
         self.account_type = account_type
- 
+
     def __repr__(self) -> str:
         return (
             f"Customer(id='{self.customer_id}', "
             f"name='{self.customer_name}', "
             f"province='{self.province}')"
         )
- 
