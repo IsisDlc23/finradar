@@ -1,5 +1,7 @@
 import csv
 import logging
+import csv
+import logging
 from datetime import datetime
 from typing import Generator, Dict, Any
 from pathlib import Path
@@ -8,13 +10,9 @@ from domain.exceptions import DataLoaderError
 logger = logging.getLogger(__name__)
 
 class CsvDataLoader:
-    def __init__(self, file_path=None) -> None:
-        # Apunta automáticamente a BI/data/transactions.csv sin importar la carpeta actual
-        if file_path is None:
-            self.file_path = Path(__file__).parent.parent / "data" / "transactions.csv"
-        else:
-            self.file_path = Path(file_path)
-
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+ 
     def read(self) -> Generator[Dict[str, Any], None, None]:
         """Lee el archivo CSV fila por fila utilizando un generador."""
         try:
